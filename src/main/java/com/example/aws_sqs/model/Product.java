@@ -1,6 +1,5 @@
 package com.example.aws_sqs.model;
 
-import com.example.aws_sqs.constant.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,23 +8,22 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@Table(name = "orders")
+@Table(name = "products")
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
-    private Product product;
+    @Column(name = "product_name", nullable = false)
+    private String productName;
 
-    @Column(name = "count", nullable = false)
-    private Integer count;
+    @Column(name = "total_count", nullable = false)
+    private Integer totalCount;
 
     @Column(name = "created_date", nullable = false)
     private LocalDateTime createdDate;
